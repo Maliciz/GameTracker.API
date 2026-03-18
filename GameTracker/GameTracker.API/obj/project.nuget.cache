@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "eCgVzOxfCd4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mksmb\\OneDrive\\Робочий стіл\\git\\GameTracker.API\\GameTracker\\GameTracker.API\\GameTracker.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mksmb\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.5\\microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
+    "C:\\Users\\mksmb\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
