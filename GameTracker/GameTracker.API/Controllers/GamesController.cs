@@ -9,8 +9,8 @@ public class GamesController : ControllerBase
 {
        private static List<Game> _games = new List<Game>
     {
-        new Game { Id = 1, Title = "The Witcher 3", Genre = "RPG", Progress = 100, ReleaseDate = "2015-05-19" },
-        new Game { Id = 2, Title = "Elden Ring", Genre = "Action RPG", Progress = 20, ReleaseDate = "2022-02-11" }
+        new Game { Id = 1, Title = "The Witcher 3", Genre = "RPG", Progress = 100, ReleaseDate = "2015-05-19", Rating = 6, Description = "An epic open-world RPG following Geralt of Rivia on his quest to find his adopted daughter." },
+        new Game { Id = 2, Title = "Elden Ring", Genre = "Action RPG", Progress = 20, ReleaseDate = "2022-02-11", Rating = 6, Description = "An action RPG set in the world of Elden Ring, where players explore a vast open world and face challenging enemies." }
     }; 
     [HttpGet]
     public IActionResult GetGames() => Ok(_games);

@@ -1,8 +1,35 @@
+:root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('https://i.pinimg.com/736x/7f/96/e9/7f96e97d64357bc72be2705548a175b9.jpg');
+  background-repeat:repeat-x;
+  background-size: cover;
+  background-blend-mode: color-burn;
+     background-attachment: fixed;
+}
+body{
+    background-color: #0f0e10ae;
+    background-size: 100% 100% ;
+    background-position: center;
+    background-repeat: repeat-x;
+    opacity: 1;
+     box-shadow: 0 0 10px #dcdcdc;
+     animation: box-shadow 3s infinite;
+    -webkit-animation: 3s box-shadow infinite;
+
+
+}
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #09070a87;
+  border-radius: 12px;
+  color: #fff;
+  
 }
 
 header {
@@ -26,11 +53,11 @@ header {
 
 .game-card:hover {
   transform: translateY(-5px);
-  border-color: #646cff;
+  border-color: #ffffff;
 }
 
 .badge {
-  background: #646cff;
+  background: #181518;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -47,17 +74,37 @@ header {
   overflow: hidden;
   margin: 8px 0;
 }
-
+.rating {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+.rating.good {
+  background: #4caf50;
+  color: #fff;
+}
+.rating.bad {
+  background: #f44336;
+  color: #fff;
+}
+.rating.medium {
+  background: #ff9800;
+  color: #fff;
+}
 .progress-bar-fill {
-  background: linear-gradient(90deg, #646cff, #42b883);
+  background: linear-gradient(90deg, #b3b3b3c6, #6e5096);
   height: 100%;
   transition: width 0.5s ease-in-out;
 }
 
 .completed-text {
-  color: #42b883;
+  color: #a166bd;
   font-size: 0.9rem;
   font-weight: bold;
+animation: text-color-blink 3s infinite;
+-webkit-animation: 3s text-color-blink infinite;
 }
 
 .refresh-btn {
@@ -65,4 +112,106 @@ header {
   margin: 2rem auto;
   padding: 10px 20px;
   cursor: pointer;
+  background: #262424;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  transition: 1s;
+  animation: box-shadow 3s infinite;
+  -webkit-animation: box-shadow 3s infinite;
+}
+.refresh-btn:hover {
+  display: block;
+  margin: 2rem auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  color: #262424;
+  font-size: 1rem;
+  transition: 1s;
+  animation: box-shadow 3s infinite;
+  -webkit-animation: box-shadow 3s infinite;
+}
+.input-group {
+  
+  gap: 10px;
+  margin-bottom: 20px;
+
+}
+.input-group input {
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #242424;
+  color: #fff;  
+  font-size: 0.9rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: bold;
+}
+.input-group input:hover {
+  box-shadow: #fff 0px 0px 15px;
+  border: 1px solid #dcdcdc;
+  animation: box-shadow 3s infinite; 
+  transition: 1s;
+  -webkit-animation: 3s box-shadow infinite;
+  
+}
+.input-group#description-group {
+  display: grid;
+  height: auto;
+  font-size: 1.5rem;
+  align-self: start;
+}
+.add-game-form button {
+  display: block;
+  margin: 2rem auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #262424;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  transition: 1s;
+  animation: box-shadow 3s infinite;
+  -webkit-animation: box-shadow 3s infinite;
+}.add-game-form button:hover {
+  display: block;
+  margin: 2rem auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  color: #262424;
+  font-size: 1rem;
+  transition: 1s;
+  animation: box-shadow 3s infinite;
+  -webkit-animation: box-shadow 3s infinite;
+}
+@keyframes box-shadow {
+  0% {
+    box-shadow: 0 0 10px #dcdcdc;
+  }
+  50% {
+    box-shadow: 0 0 15px #dcdcdc;
+  }
+  100% {
+    box-shadow: 0 0 10px #dcdcdc;
+  }
+
+}
+@keyframes text-color-blink {
+  0% {
+    color: #602f7887;
+  }
+  50% {
+    color: #9f95a4;
+  }
+  100% {
+    color: #602f7887;
+  }
 }

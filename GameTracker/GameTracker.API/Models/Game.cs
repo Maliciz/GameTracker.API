@@ -8,5 +8,6 @@ public class Game
     public int Progress { get; set; } 
     public string ReleaseDate { get; set; } = string.Empty;
     public bool IsCompleted => Progress == 100;
-    public string Description { get; private set; } = string.Empty;
+    public string Description { get;  set; } = string.Empty;
+    public int Rating { get; set; }
 }

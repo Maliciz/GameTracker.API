@@ -5,6 +5,8 @@ function App() {
 
   const [games, setGames] = useState([]);
   const [newGameTitle, setNewGameTitle] = useState("");
+  const [newGameRating, setNewGameRating] = useState(0);
+  const [newGameDescription, setNewGameDescription] = useState("");
 
   const addGame = async () => {
     if (!newGameTitle) return; 
@@ -13,7 +15,9 @@ function App() {
       title: newGameTitle,
       genre: "PC Game",
       progress: 0,
-      releaseDate: new Date().toISOString().split('T')[0]
+      releaseDate: new Date().toISOString().split('T')[0],
+      rating: newGameRating,
+      description: newGameDescription 
     };
 
     const response = await fetch('http://localhost:5181/api/games', {
@@ -25,6 +29,8 @@ function App() {
     if (response.ok) {
       setNewGameTitle("");
       fetchGames();
+      setNewGameRating(0);
+      setNewGameDescription("");
     }
   };
 const fetchGames = async () => {
@@ -49,16 +55,34 @@ const fetchGames = async () => {
   return (
     <div className="container">
       <header>
-        <h1>🎮 Game Tracker Professional</h1>
-        <p>Відстеження прогресу у ваших іграх</p>
+        <h1>Game Tracker </h1>
+        <p>My Game Tracker</p>
       </header>
 <div className="add-game-form">
-  <input 
+  <div className="input-group"  id='title-group'>
+    <input 
     type="text" 
     placeholder="Назва гри..." 
     value={newGameTitle}
     onChange={(e) => setNewGameTitle(e.target.value)} 
   />
+  </div>
+  <div className="input-group " id ='rating-group'>
+    <input 
+    type="number" 
+    placeholder="Рейтинг..." 
+    value={newGameRating}
+    onChange={(e) => setNewGameRating(parseInt(e.target.value) < 11 && parseInt(e.target.value) >= 0 ? parseInt(e.target.value) : 0)} 
+  />
+  </div>
+  <div className="input-group" id='description-group'>
+    <input 
+    type="text" 
+    placeholder="Опис..." 
+    value={newGameDescription}
+    onChange={(e) => setNewGameDescription(e.target.value)} 
+  />
+  </div>
   <button onClick={addGame}>Додати гру</button>
 </div>
       <div className="game-grid">
@@ -67,7 +91,9 @@ const fetchGames = async () => {
             <div className="game-info">
               <h2>{game.title}</h2>
               <span className="badge">{game.genre}</span>
+              {game.rating < 5 ? <span className="rating bad">{game.rating}</span> : game.rating > 5 && game.rating < 8 ? <span className="rating medium">{game.rating}</span> : <span className="rating good">{game.rating}</span>}
               <p className="release-date">Вихід: {game.releaseDate}</p>
+              <p className="release-date">Опис: {game.description}</p>
             </div>
             
             <div className="progress-section">
@@ -81,7 +107,7 @@ const fetchGames = async () => {
                   style={{ width: `${game.progress}%` }}
                 ></div>
               </div>
-              {game.progress === 100 && <span className="completed-text">✅ Пройдено!</span>}
+              {game.progress === 100 && <span className="completed-text">Пройдено!</span>}
             </div>
           </div>
         ))}
