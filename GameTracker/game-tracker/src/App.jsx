@@ -1,140 +1,57 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
+import GameCard from './components/GameCard';
+import Header from './components/Header/Header';
 
 function App() {
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [games, setGames] = useState([]);
-  const [newGameTitle, setNewGameTitle] = useState("");
-  const [newGameRating, setNewGameRating] = useState(0);
-  const [newGameDescription, setNewGameDescription] = useState("");
 
-  const addGame = async () => {
-    if (!newGameTitle) return; 
+  const fetchGames = async () => {
+    try {
+      const response = await fetch('http://localhost:5181/api/games');
+      const data = await response.json();
+      setGames(data);
+    } catch (error) {
+      console.error("Помилка завантаження:", error);
+    }
+  };
 
-    const gameToAdd = {
-      title: newGameTitle,
-      genre: "PC Game",
-      progress: 0,
-      releaseDate: new Date().toISOString().split('T')[0],
-      rating: newGameRating,
-      description: newGameDescription 
-    };
-
+  const addGame = async (gameToAdd) => {
     const response = await fetch('http://localhost:5181/api/games', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(gameToAdd) 
+      body: JSON.stringify(gameToAdd)
     });
-
-    if (response.ok) {
-      setNewGameTitle("");
-      fetchGames();
-      setNewGameRating(0);
-      setNewGameDescription("");
-    }
+    if (response.ok){fetchGames(); setIsModalOpen(false);} 
   };
-const fetchGames = async () => {
-  try {
-    const response = await fetch('http://localhost:5181/api/games'); 
-    
-    if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-    }
 
-    const data = await response.json();
-    setGames(data);
-  } catch (error) {
-    console.error("Помилка зв'язку з бекендом:", error);
-  }
-};
-const deleteGame = async (id) => {
-  try {
+  const deleteGame = async (id) => {
     const response = await fetch(`http://localhost:5181/api/games/${id}`, {
-      method: 'DELETE',
+      method: 'DELETE'
     });
+    if (response.ok) setGames(games.filter(g => g.id !== id));
+  };
 
-    if (response.ok) {
-      setGames(games.filter(game => game.id !== id));
-    }
-  } catch (error) {
-    console.error("Помилка при видаленні:", error);
-  }
-};
-  useEffect(() => {
-    fetchGames();
-  }, []);
+  useEffect(() => { fetchGames(); }, []);
 
   return (
     <div className="container">
-      <header>
-        <h1>Game Tracker </h1>
-        <p>My Game Tracker</p>
-      </header>
-<div className="add-game-form">
-  <div className="input-group"  id='title-group'>
-    <input 
-    type="text" 
-    placeholder="Назва гри..." 
-    value={newGameTitle}
-    onChange={(e) => setNewGameTitle(e.target.value)} 
-  />
-  </div>
-  <div className="input-group " id ='rating-group'>
-    <input 
-    type="number" 
-    placeholder="Рейтинг..." 
-    value={newGameRating}
-    onChange={(e) => setNewGameRating(parseInt(e.target.value) < 11 && parseInt(e.target.value) >= 0 ? parseInt(e.target.value) : 0)} 
-  />
-  </div>
-  <div className="input-group" id='description-group'>
-    <input 
-    type="text" 
-    placeholder="Опис..." 
-    value={newGameDescription}
-    onChange={(e) => setNewGameDescription(e.target.value)} 
-  />
-  </div>
-  <button onClick={addGame}>Додати гру</button>
-</div>
+      <Header onOpenModal={() => setIsModalOpen(true)} addGame={addGame} />
+
       <div className="game-grid">
         {games.map(game => (
-          <div key={game.id} className="game-card">
-            <div className="game-info">
-              <h2>{game.title}</h2>
-              <span className="badge">{game.genre}</span>
-              {game.rating < 5 ? <span className="rating bad">{game.rating}</span> : game.rating > 5 && game.rating < 8 ? <span className="rating medium">{game.rating}</span> : <span className="rating good">{game.rating}</span>}
-              <p className="release-date">Вихід: {game.releaseDate}</p>
-              <p className="release-date">Опис: {game.description}</p>
-              
-            </div>
-            
-            <div className="progress-section">
-              <div className="progress-label">
-                <span>Прогрес</span>
-                <span>{game.progress}%</span>
-              </div>
-              <div className="progress-bar-bg">
-                <div 
-                  className="progress-bar-fill" 
-                  style={{ width: `${game.progress}%` }}
-                ></div>
-              </div>
-              {game.progress === 100 && <span className="completed-text">Пройдено!</span>}
-            </div>
-          
-          <button onClick={() => deleteGame(game.id)}>Видалити 🗑️</button>
-          </div>
+          <GameCard 
+            key={game.id} 
+            game={game} 
+            onDelete={deleteGame} 
+          />
         ))}
       </div>
 
-      <button className="refresh-btn" onClick={fetchGames}>
-        Оновити дані
-      </button>
-        
-      
+      <button className="refresh-btn" onClick={fetchGames}>Оновити дані</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

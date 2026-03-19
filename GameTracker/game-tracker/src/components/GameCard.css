@@ -1,0 +1,75 @@
+.game-card {
+  background: #242424;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #333;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  border-color: #ffffff;
+}
+
+.badge {
+  background: #181518;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.rating {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.rating.good { background: #4caf50; color: #fff; }
+.rating.bad { background: #f44336; color: #fff; }
+.rating.medium { background: #ff9800; color: #fff; }
+
+.progress-section {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.progress-bar-bg {
+  background: #444;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.progress-bar-fill {
+  background: linear-gradient(90deg, #b3b3b3c6, #6e5096);
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+.completed-text {
+  color: #a166bd;
+  font-size: 0.9rem;
+  font-weight: bold;
+  animation: text-color-blink 3s infinite;
+}
+
+.game-card button {
+  background: transparent;
+  border: 1px solid #f44336;
+  color: #f44336;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.game-card button:hover {
+  background: #f44336;
+  color: white;
+}

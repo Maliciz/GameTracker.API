@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using GameTracker.API.Models;
+using GameTracker.API.Data;
+using System.Linq;
 
 namespace GameTracker.API.Controllers;
 
@@ -7,28 +9,34 @@ namespace GameTracker.API.Controllers;
 [Route("api/[controller]")]
 public class GamesController : ControllerBase
 {
-       private static List<Game> _games = new List<Game>
+    private AppDbContext _context;
+    public GamesController(AppDbContext context)
     {
-        new Game { Id = 1, Title = "The Witcher 3", Genre = "RPG", Progress = 100, ReleaseDate = "2015-05-19", Rating = 6, Description = "An epic open-world RPG following Geralt of Rivia on his quest to find his adopted daughter." },
-        new Game { Id = 2, Title = "Elden Ring", Genre = "Action RPG", Progress = 20, ReleaseDate = "2022-02-11", Rating = 6, Description = "An action RPG set in the world of Elden Ring, where players explore a vast open world and face challenging enemies." }
-    }; 
-    [HttpGet]
-    public IActionResult GetGames() => Ok(_games);
+        _context = context;
+    }
+     [HttpGet]
+    public IActionResult GetGames()
+    {
+        var games = _context.Games.ToList();
+        return Ok(games);
+    }
     [HttpPost]
     public IActionResult CreateGame([FromBody] Game newGame)
     {
-        newGame.Id = _games.Count + 1; 
-        _games.Add(newGame);
+        _context.Games.Add(newGame);
+        _context.SaveChanges(); 
         return Ok(newGame);
     }
-    
-[HttpDelete("{id}")]
+    [HttpDelete("{id}")]
     public IActionResult DeleteGame(int id)
     {
-        var game = _games.FirstOrDefault(g => g.Id == id);
-        if (game == null) return NotFound();
+        var game = _context.Games.Find(id);
+        
+        if (game == null)
+            return NotFound();
 
-        _games.Remove(game);
-        return NoContent(); 
+        _context.Games.Remove(game);
+        _context.SaveChanges();
+        return NoContent();
     }
 }

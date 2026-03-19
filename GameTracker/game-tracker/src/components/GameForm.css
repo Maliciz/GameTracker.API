@@ -1,0 +1,57 @@
+
+.add-game-form {
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.input-group {
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #242424;
+  color: #fff;  
+  font-size: 0.9rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-group input:hover {
+  box-shadow: #fff 0px 0px 15px;
+  border: 1px solid #dcdcdc;
+  animation: box-shadow 3s infinite; 
+  transition: 1s;
+}
+
+.input-group#description-group {
+  display: grid;
+  height: auto;
+  font-size: 1.5rem;
+}
+
+.add-game-form button {
+  display: block;
+  margin: 1rem auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #262424;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  transition: 1s;
+  animation: box-shadow 3s infinite;
+}
+
+.add-game-form button:hover {
+  background: #ffffff;
+  color: #262424;
+}
