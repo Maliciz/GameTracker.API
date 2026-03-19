@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameTracker.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+384624ebf3d4071c286609350b03c74c3d7f5a4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dea5e51962b2298e3fce1f6c9b71e5c866b46f80")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameTracker.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameTracker.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
