@@ -47,7 +47,19 @@ const fetchGames = async () => {
     console.error("Помилка зв'язку з бекендом:", error);
   }
 };
+const deleteGame = async (id) => {
+  try {
+    const response = await fetch(`http://localhost:5181/api/games/${id}`, {
+      method: 'DELETE',
+    });
 
+    if (response.ok) {
+      setGames(games.filter(game => game.id !== id));
+    }
+  } catch (error) {
+    console.error("Помилка при видаленні:", error);
+  }
+};
   useEffect(() => {
     fetchGames();
   }, []);
@@ -94,6 +106,7 @@ const fetchGames = async () => {
               {game.rating < 5 ? <span className="rating bad">{game.rating}</span> : game.rating > 5 && game.rating < 8 ? <span className="rating medium">{game.rating}</span> : <span className="rating good">{game.rating}</span>}
               <p className="release-date">Вихід: {game.releaseDate}</p>
               <p className="release-date">Опис: {game.description}</p>
+              
             </div>
             
             <div className="progress-section">
@@ -109,6 +122,8 @@ const fetchGames = async () => {
               </div>
               {game.progress === 100 && <span className="completed-text">Пройдено!</span>}
             </div>
+          
+          <button onClick={() => deleteGame(game.id)}>Видалити 🗑️</button>
           </div>
         ))}
       </div>
@@ -116,6 +131,8 @@ const fetchGames = async () => {
       <button className="refresh-btn" onClick={fetchGames}>
         Оновити дані
       </button>
+        
+      
     </div>
   )
 }

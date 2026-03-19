@@ -21,4 +21,14 @@ public class GamesController : ControllerBase
         _games.Add(newGame);
         return Ok(newGame);
     }
+    
+[HttpDelete("{id}")]
+    public IActionResult DeleteGame(int id)
+    {
+        var game = _games.FirstOrDefault(g => g.Id == id);
+        if (game == null) return NotFound();
+
+        _games.Remove(game);
+        return NoContent(); 
+    }
 }
