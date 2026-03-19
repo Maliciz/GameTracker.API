@@ -89,11 +89,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mksmb\\OneDrive\\Робочий стіл\\git\\GameTracker.API\\GameTracker\\GameTracker.API\\GameTracker.API.csproj",
+      "projectUniqueName": "C:\\git\\GameTracker.API\\GameTracker\\GameTracker.API\\GameTracker.API.csproj",
       "projectName": "GameTracker.API",
-      "projectPath": "C:\\Users\\mksmb\\OneDrive\\Робочий стіл\\git\\GameTracker.API\\GameTracker\\GameTracker.API\\GameTracker.API.csproj",
+      "projectPath": "C:\\git\\GameTracker.API\\GameTracker\\GameTracker.API\\GameTracker.API.csproj",
       "packagesPath": "C:\\Users\\mksmb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mksmb\\OneDrive\\Робочий стіл\\git\\GameTracker.API\\GameTracker\\GameTracker.API\\obj\\",
+      "outputPath": "C:\\git\\GameTracker.API\\GameTracker\\GameTracker.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
